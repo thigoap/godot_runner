@@ -1,0 +1,199 @@
+[gd_scene load_steps=21 format=3 uid="uid://b56h7qcdgdwhx"]
+
+[ext_resource type="Script" uid="uid://bfv157pcfkt2u" path="res://Scripts/runner.gd" id="1_8hvgc"]
+[ext_resource type="Texture2D" uid="uid://dd6xms3aw2c47" path="res://Assets/Runner/runner-spritesheet.png" id="1_ph5uf"]
+[ext_resource type="Script" uid="uid://cbq3g3hy7xiwp" path="res://Scripts/states.gd" id="3_aci1l"]
+[ext_resource type="Script" uid="uid://c2umweavqre3k" path="res://Scripts/States/state_run.gd" id="3_knck0"]
+[ext_resource type="Script" uid="uid://c5j5wb88utfg3" path="res://Scripts/States/state_locked.gd" id="3_nmece"]
+[ext_resource type="Script" uid="uid://b053mbiq6ws0b" path="res://Scripts/States/state_jump.gd" id="5_btrns"]
+[ext_resource type="Script" uid="uid://cry0kaxiew275" path="res://Scripts/States/state_jumpPeak.gd" id="5_sy845"]
+[ext_resource type="Script" uid="uid://b1beecvc516qr" path="res://Scripts/States/state_fall.gd" id="6_u3biy"]
+[ext_resource type="Script" uid="uid://fev8noj72wd4" path="res://Scripts/States/state_dash.gd" id="9_tid4m"]
+[ext_resource type="Script" uid="uid://boab3cd58g8ql" path="res://Scripts/States/state_shoot.gd" id="10_txt53"]
+
+[sub_resource type="Animation" id="Animation_o7jxn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_he57y"]
+resource_name = "dash"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_avmbn"]
+resource_name = "fall"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_5dyu8"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0wm00"]
+resource_name = "jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_xngy1"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tid4m"]
+resource_name = "shoot"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tiksf"]
+_data = {
+&"RESET": SubResource("Animation_o7jxn"),
+&"dash": SubResource("Animation_he57y"),
+&"fall": SubResource("Animation_avmbn"),
+&"idle": SubResource("Animation_5dyu8"),
+&"jump": SubResource("Animation_0wm00"),
+&"run": SubResource("Animation_xngy1"),
+&"shoot": SubResource("Animation_tid4m")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmhgl"]
+size = Vector2(7, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_txt53"]
+radius = 3.5
+
+[node name="Cosmo" type="CharacterBody2D"]
+script = ExtResource("1_8hvgc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ph5uf")
+hframes = 6
+vframes = 5
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tiksf")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_mmhgl")
+
+[node name="DashCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_txt53")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_aci1l")
+
+[node name="Locked" type="Node" parent="StateMachine"]
+script = ExtResource("3_nmece")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("3_knck0")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_btrns")
+
+[node name="JumpPeak" type="Node" parent="StateMachine"]
+script = ExtResource("5_sy845")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("6_u3biy")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("9_tid4m")
+
+[node name="Shoot" type="Node" parent="StateMachine"]
+script = ExtResource("10_txt53")

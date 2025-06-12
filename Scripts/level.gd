@@ -7,10 +7,9 @@ extends Node2D
 
 const START_SPEED = 2
 const MAX_SPEED = 8
-const RUNNER_START_POS = Vector2i(40,156)
+const RUNNER_START_POS = Vector2i(80,128)
 const CAM_START_POS = Vector2i(160,90)
 
-@export var speed : float
 #endregion
 
 # Called when the node enters the scene tree for the first time.
@@ -18,9 +17,9 @@ func _ready():
 	NewGame()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	Camera.position.x += speed
-	Runner.position.x += speed
+func _process(_delta):
+	Camera.position.x += GameManager.game_speed
+	Runner.position.x += GameManager.game_speed
 
 func NewGame():
 	Runner.position = RUNNER_START_POS

@@ -1,14 +1,14 @@
 extends PlayerState
 
 func EnterState():
-	Name = "Shoot"
+	Name = 'Shoot'
 	
 func ExitState():
 	pass
 	
-func Update(delta: float):
+func Update(_delta: float):
 	Player.HandleFalling()
 	HandleAnimations()
 	
 func HandleAnimations():
-	Player.animator.play("shoot")
+	Player.animator.play('shoot')

@@ -1,7 +1,7 @@
 extends PlayerState
 
 func EnterState():
-	Name = "Jump"
+	Name = 'Jump'
 	Player.velocity.y = Player.JUMP_VELOCITY
 	
 func ExitState():
@@ -17,4 +17,4 @@ func HandleJumpToFall():
 		Player.ChangeState(States.JumpPeak)
 	
 func HandleAnimations():
-	Player.animator.play("jump")
+	Player.animator.play('jump')

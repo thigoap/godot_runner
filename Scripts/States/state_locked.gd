@@ -1,10 +1,10 @@
 extends PlayerState
 
 func EnterState():
-	Name = "Locked"
+	Name = 'Locked'
 	
 func ExitState():
 	pass
 	
-func Update(delta: float):
+func Update(_delta: float):
 	pass

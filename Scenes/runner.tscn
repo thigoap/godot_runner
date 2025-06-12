@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://b56h7qcdgdwhx"]
 
 [ext_resource type="Script" uid="uid://bfv157pcfkt2u" path="res://Scripts/runner.gd" id="1_8hvgc"]
-[ext_resource type="Texture2D" uid="uid://dd6xms3aw2c47" path="res://Assets/Runner/runner-spritesheet.png" id="1_ph5uf"]
-[ext_resource type="Script" uid="uid://cbq3g3hy7xiwp" path="res://Scripts/states.gd" id="3_aci1l"]
+[ext_resource type="Texture2D" uid="uid://dd6xms3aw2c47" path="res://Sprites/Runner/runner-spritesheet.png" id="1_ph5uf"]
+[ext_resource type="Script" uid="uid://cbq3g3hy7xiwp" path="res://Scripts/States/states.gd" id="3_aci1l"]
 [ext_resource type="Script" uid="uid://c2umweavqre3k" path="res://Scripts/States/state_run.gd" id="3_knck0"]
 [ext_resource type="Script" uid="uid://c5j5wb88utfg3" path="res://Scripts/States/state_locked.gd" id="3_nmece"]
 [ext_resource type="Script" uid="uid://b053mbiq6ws0b" path="res://Scripts/States/state_jump.gd" id="5_btrns"]
@@ -152,7 +152,7 @@ size = Vector2(7, 8)
 [sub_resource type="CircleShape2D" id="CircleShape2D_txt53"]
 radius = 3.5
 
-[node name="Cosmo" type="CharacterBody2D"]
+[node name="Runner" type="CharacterBody2D"]
 script = ExtResource("1_8hvgc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -173,6 +173,10 @@ shape = SubResource("RectangleShape2D_mmhgl")
 [node name="DashCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_txt53")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_aci1l")
@@ -197,3 +201,5 @@ script = ExtResource("9_tid4m")
 
 [node name="Shoot" type="Node" parent="StateMachine"]
 script = ExtResource("10_txt53")
+
+[connection signal="timeout" from="DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]

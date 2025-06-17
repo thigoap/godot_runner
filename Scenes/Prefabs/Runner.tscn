@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b56h7qcdgdwhx"]
+[gd_scene load_steps=23 format=3 uid="uid://b56h7qcdgdwhx"]
 
 [ext_resource type="Script" uid="uid://bfv157pcfkt2u" path="res://Scripts/runner.gd" id="1_8hvgc"]
 [ext_resource type="Texture2D" uid="uid://dd6xms3aw2c47" path="res://Sprites/Runner/runner-spritesheet.png" id="1_ph5uf"]
@@ -9,7 +9,8 @@
 [ext_resource type="Script" uid="uid://cry0kaxiew275" path="res://Scripts/States/state_jumpPeak.gd" id="5_sy845"]
 [ext_resource type="Script" uid="uid://b1beecvc516qr" path="res://Scripts/States/state_fall.gd" id="6_u3biy"]
 [ext_resource type="Script" uid="uid://fev8noj72wd4" path="res://Scripts/States/state_dash.gd" id="9_tid4m"]
-[ext_resource type="Script" uid="uid://boab3cd58g8ql" path="res://Scripts/States/state_shoot.gd" id="10_txt53"]
+[ext_resource type="Script" uid="uid://boab3cd58g8ql" path="res://Scripts/States/state_shootBack.gd" id="10_txt53"]
+[ext_resource type="Script" uid="uid://e4tveo8ju5ls" path="res://Scripts/States/state_shootFront.gd" id="11_aq4gv"]
 
 [sub_resource type="Animation" id="Animation_o7jxn"]
 length = 0.001
@@ -24,18 +25,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_he57y"]
@@ -120,7 +109,23 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_tid4m"]
-resource_name = "shoot"
+resource_name = "shoot back"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_tebkp"]
+resource_name = "shoot front"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -143,7 +148,8 @@ _data = {
 &"idle": SubResource("Animation_5dyu8"),
 &"jump": SubResource("Animation_0wm00"),
 &"run": SubResource("Animation_xngy1"),
-&"shoot": SubResource("Animation_tid4m")
+&"shoot back": SubResource("Animation_tid4m"),
+&"shoot front": SubResource("Animation_tebkp")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmhgl"]
@@ -159,7 +165,9 @@ script = ExtResource("1_8hvgc")
 texture = ExtResource("1_ph5uf")
 hframes = 6
 vframes = 5
-frame = 6
+
+[node name="ShootMarker2D" type="Marker2D" parent="."]
+position = Vector2(7, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -199,7 +207,10 @@ script = ExtResource("6_u3biy")
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("9_tid4m")
 
-[node name="Shoot" type="Node" parent="StateMachine"]
+[node name="ShootBack" type="Node" parent="StateMachine"]
 script = ExtResource("10_txt53")
+
+[node name="ShootFront" type="Node" parent="StateMachine"]
+script = ExtResource("11_aq4gv")
 
 [connection signal="timeout" from="DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]

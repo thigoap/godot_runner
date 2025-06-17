@@ -2,7 +2,7 @@ extends Node
 
 var in_game = false
 var paused = false
-var game_speed: float = 2.0
+var game_speed: float = 2.5
 var game_bckp_speed: float
 
 # Called when the node enters the scene tree for the first time.

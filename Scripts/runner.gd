@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var collider = $CollisionShape2D
 @onready var dashCollider = $DashCollisionShape2D
 @onready var States = $StateMachine
+const LASER = preload("res://Scenes/Prefabs/Laser.tscn")
 
 const GRAVITY = 700
 const JUMP_VELOCITY = -250
@@ -13,11 +14,10 @@ const MAX_JUMPS = 1
 
 var jumps = 0
 
-var keyJump = false
 var keyJumpPressed = false
-var keyDash = false
 var keyDashPressed = false
-var keyShootPressed = false
+var keyShootBackPressed = false
+var keyShootFrontPressed = false
 
 # State Machine
 var current_state = null
@@ -33,8 +33,8 @@ func _ready():
 	previous_state = States.Fall
 	current_state = States.Fall
 
-func _draw():
-	current_state.Draw()
+#func _draw():
+	#current_state.Draw()
 
 func _physics_process(delta):
 	GetInputStates()
@@ -55,12 +55,12 @@ func ChangeState(next_state):
 		current_state.EnterState()
 		print('State Change from: ' + previous_state.Name + ' to ' + current_state.Name)
 
+
 func GetInputStates():
-	#keyJump = Input.is_action_pressed("KeyJump")
-	#keyDash = Input.is_action_pressed("KeyDash")
 	keyJumpPressed = Input.is_action_just_pressed("KeyJump")
 	keyDashPressed = Input.is_action_just_pressed("KeyDash")
-	keyShootPressed = Input.is_action_just_pressed("KeyShoot")
+	keyShootBackPressed = Input.is_action_just_pressed("KeyShootBack")
+	keyShootFrontPressed = Input.is_action_just_pressed("KeyShootFront")
 
 
 func HandleDash():
@@ -89,5 +89,7 @@ func HandleLanding():
 
 
 func HandleShoot():
-	if keyShootPressed:
-		ChangeState(States.Shoot)
+	if keyShootBackPressed:
+		ChangeState(States.ShootBack)
+	if keyShootFrontPressed:
+		ChangeState(States.ShootFront)

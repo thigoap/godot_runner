@@ -6,4 +6,5 @@ extends Node
 @onready var JumpPeak = $JumpPeak
 @onready var Fall = $Fall
 @onready var Dash = $Dash
-@onready var Shoot = $Shoot
+@onready var ShootBack = $ShootBack
+@onready var ShootFront = $ShootFront

@@ -29,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_he57y"]
 resource_name = "dash"
-length = 0.6
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -126,7 +126,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_tebkp"]
 resource_name = "shoot front"
-length = 0.6
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -167,7 +167,7 @@ hframes = 6
 vframes = 5
 
 [node name="ShootMarker2D" type="Marker2D" parent="."]
-position = Vector2(7, 0)
+position = Vector2(8, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -183,7 +183,7 @@ position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_txt53")
 
 [node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 3.0
 one_shot = true
 
 [node name="StateMachine" type="Node" parent="."]

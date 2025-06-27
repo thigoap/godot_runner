@@ -1,8 +1,15 @@
 extends PlayerState
 
+@onready var runner: CharacterBody2D = $"../.."
+@onready var mine_marker_2d: Marker2D = $"../../MineMarker2D"
+const MINE = preload("res://Scenes/Prefabs/Mine.tscn")
+
 func EnterState():
 	Name = 'ShootBack'
-	
+	var mine = MINE.instantiate()
+	mine.global_position = mine_marker_2d.global_position
+	get_parent().add_child(mine)
+
 func ExitState():
 	pass
 	

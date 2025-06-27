@@ -7,7 +7,6 @@ extends CharacterBody2D
 @onready var dashCollider = $DashCollisionShape2D
 @onready var States = $StateMachine
 
-const LASER = preload("res://Scenes/Prefabs/Laser.tscn")
 const GRAVITY = 700
 const JUMP_VELOCITY = -250
 const MAX_JUMPS = 1
@@ -94,8 +93,12 @@ func HandleLanding():
 func HandleShoot():
 	if keyShootBackPressed:
 		ChangeState(States.ShootBack)
+		BackFromShoot()
 	if keyShootFrontPressed:
 		ChangeState(States.ShootFront)
-		await animator.animation_finished
-		if current_state.name == 'ShootFront':
-			ChangeState(States.Run)
+		BackFromShoot()
+
+func BackFromShoot():
+	await animator.animation_finished
+	if current_state.name == 'ShootFront' or current_state.name == 'ShootBack':
+		ChangeState(States.Run)	

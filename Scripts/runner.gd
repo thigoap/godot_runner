@@ -44,6 +44,7 @@ func _physics_process(delta):
 	HandleShoot()
 
 	move_and_slide()
+	velocity.x = 0
 
 
 func ChangeState(next_state):

@@ -10,10 +10,3 @@ func _ready():
 	enemy.global_position = back_enemy_spawner.global_position
 	#print(enemy.global_position)
 	get_parent().add_child(enemy)
-
-#func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("KeyShootFront"):
-		#var enemy = front_enemy.instantiate()
-		#enemy.global_position = front_enemy_spawner.global_position
-		#print(enemy.global_position)
-		#get_parent().add_child(enemy)

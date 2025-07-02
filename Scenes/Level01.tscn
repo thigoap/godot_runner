@@ -80,11 +80,11 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_dutcy")
 
 [node name="Runner" parent="." instance=ExtResource("3_t0sul")]
-position = Vector2(120, 78)
+position = Vector2(118, 129)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
 
 [node name="BackEnemySpawner" type="Marker2D" parent="."]
-position = Vector2(263, 111)
+position = Vector2(255, 128)
 script = ExtResource("5_3447m")

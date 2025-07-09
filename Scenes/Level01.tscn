@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://lifmrwt30eu8"]
+[gd_scene load_steps=9 format=3 uid="uid://lifmrwt30eu8"]
 
 [ext_resource type="Script" uid="uid://bow6a38cdbby6" path="res://Scripts/level.gd" id="1_cmgkd"]
 [ext_resource type="PackedScene" uid="uid://d1g2pf0788cka" path="res://Scenes/Background.tscn" id="2_3447m"]
 [ext_resource type="PackedScene" uid="uid://b56h7qcdgdwhx" path="res://Scenes/Prefabs/Runner.tscn" id="3_t0sul"]
 [ext_resource type="Texture2D" uid="uid://cmft1xv64a8yg" path="res://Sprites/Environment/ground01.png" id="4_30kwv"]
 [ext_resource type="Script" uid="uid://cjhykuunk2ilf" path="res://Scripts/spawner.gd" id="5_3447m"]
+[ext_resource type="FontFile" uid="uid://dyb7jepjkrn5o" path="res://Sprites/Font/visitor1.ttf" id="5_t0sul"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nwny"]
 size = Vector2(360, 43)
@@ -18,9 +19,9 @@ script = ExtResource("1_cmgkd")
 [node name="Background" parent="." instance=ExtResource("2_3447m")]
 
 [node name="Ground" type="Node2D" parent="."]
+position = Vector2(180, 209)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
-position = Vector2(180, 156)
 collision_layer = 8
 collision_mask = 3
 
@@ -32,7 +33,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_8nwny")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Ground"]
-position = Vector2(540, 156)
+position = Vector2(360, 0)
 collision_layer = 8
 collision_mask = 3
 
@@ -44,7 +45,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_dutcy")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Ground"]
-position = Vector2(900, 156)
+position = Vector2(720, 0)
 collision_layer = 8
 collision_mask = 3
 
@@ -56,7 +57,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_dutcy")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Ground"]
-position = Vector2(1260, 156)
+position = Vector2(1078, 0)
 collision_layer = 8
 collision_mask = 3
 
@@ -68,7 +69,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_dutcy")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="Ground"]
-position = Vector2(767, 138)
+position = Vector2(1438, 0)
 collision_layer = 8
 collision_mask = 3
 
@@ -80,11 +81,43 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_dutcy")
 
 [node name="Runner" parent="." instance=ExtResource("3_t0sul")]
-position = Vector2(118, 129)
+position = Vector2(200, 182)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(160, 90)
+anchor_mode = 0
+
+[node name="HUD" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Distance" type="Label" parent="Camera2D/HUD"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 242.0
+offset_right = 773.0
+offset_bottom = 530.0
+scale = Vector2(0.04, 0.04)
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_t0sul")
+theme_override_font_sizes/font_size = 320
+text = "0000"
+vertical_alignment = 2
 
 [node name="BackEnemySpawner" type="Marker2D" parent="."]
-position = Vector2(255, 128)
+unique_name_in_owner = true
+position = Vector2(9, 183)
 script = ExtResource("5_3447m")
+
+[node name="BackEnemyPointer" type="Marker2D" parent="BackEnemySpawner"]
+position = Vector2(30, 0)
+
+[node name="FrontEnemySpawner" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(460, 175)

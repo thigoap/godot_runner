@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bio1lo675b71n"]
+[gd_scene load_steps=5 format=3 uid="uid://c4mp7yrh4ejsr"]
 
-[ext_resource type="Script" uid="uid://drdo5tk2mea1l" path="res://Scripts/enemy.gd" id="1_0p0aa"]
-[ext_resource type="Texture2D" uid="uid://d1t5advhpykit" path="res://Sprites/enemy-spritesheet.png" id="1_ugnox"]
+[ext_resource type="Script" uid="uid://drdo5tk2mea1l" path="res://Scripts/back_enemy.gd" id="1_kq7j2"]
+[ext_resource type="Texture2D" uid="uid://d1t5advhpykit" path="res://Sprites/enemy-spritesheet.png" id="2_djrms"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0p0aa"]
 radius = 8.0
@@ -13,10 +13,10 @@ size = Vector2(16, 16)
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_0p0aa")
+script = ExtResource("1_kq7j2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ugnox")
+texture = ExtResource("2_djrms")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0p0aa")

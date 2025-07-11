@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://o51yokdvjrpj"]
 
 [ext_resource type="Texture2D" uid="uid://bnt1ix5dsyrtm" path="res://Sprites/bullet-spritesheet.png" id="1_en5pc"]
-[ext_resource type="Script" uid="uid://cs262x5t3j5yx" path="res://Scripts/laser.gd" id="1_rlh0j"]
+[ext_resource type="Script" uid="uid://cs262x5t3j5yx" path="res://Scripts/front_laser.gd" id="1_rlh0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3nus"]
 size = Vector2(5, 3)

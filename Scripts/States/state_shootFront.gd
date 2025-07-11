@@ -1,8 +1,8 @@
 extends PlayerState
 
 @onready var runner: CharacterBody2D = $"../.."
-@onready var shoot_marker_2d: Marker2D = $"../../LaserMarker2D"
-const LASER = preload("res://Scenes/Prefabs/Laser.tscn")
+@onready var shoot_marker_2d: Marker2D = $"../../FrontMarker2D"
+const LASER = preload("res://Scenes/Prefabs/FrontLaser.tscn")
 
 func EnterState():
 	Name = 'ShootFront'

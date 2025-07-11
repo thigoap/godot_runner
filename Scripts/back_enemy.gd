@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-@onready var back_enemy_spawner: Marker2D = $"../BackEnemySpawner/"
+@onready var enemy_spawner: Node2D = $"../Spawner"
+@onready var back_enemy_spawner: Marker2D = $"../BackEnemySpawner"
 @onready var back_enemy_pointer: Marker2D = $"../BackEnemySpawner/BackEnemyPointer"
 
-var move_speed = 200
+var move_speed = 250
 var positioning = true
 
 
@@ -13,7 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print('enemy down')
-	back_enemy_spawner.back_enemy_on = false
+	enemy_spawner.back_enemy_on = false
 	queue_free()
 
 

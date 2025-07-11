@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4mp7yrh4ejsr"]
 
-[ext_resource type="Script" uid="uid://drdo5tk2mea1l" path="res://Scripts/back_enemy.gd" id="1_kq7j2"]
+[ext_resource type="Script" uid="uid://cuah5rd3bwcxq" path="res://Scripts/front_enemy.gd" id="1_kq7j2"]
 [ext_resource type="Texture2D" uid="uid://d1t5advhpykit" path="res://Sprites/enemy-spritesheet.png" id="2_djrms"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0p0aa"]
@@ -10,7 +10,7 @@ height = 18.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijqxc"]
 size = Vector2(16, 16)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="FrontEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_kq7j2")

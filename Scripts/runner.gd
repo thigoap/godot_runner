@@ -17,6 +17,7 @@ var keyJumpPressed = false
 var keyDashPressed = false
 var keyShootBackPressed = false
 var keyShootFrontPressed = false
+var keyDropMinePressed = false
 
 # State Machine
 var current_state = null
@@ -42,6 +43,7 @@ func _physics_process(delta):
 	HandleJump()
 	HandleDash()
 	HandleShoot()
+	HandleMine()
 
 	move_and_slide()
 	velocity.x = 0
@@ -61,6 +63,7 @@ func GetInputStates():
 	keyDashPressed = Input.is_action_just_pressed("KeyDash")
 	keyShootBackPressed = Input.is_action_just_pressed("KeyShootBack")
 	keyShootFrontPressed = Input.is_action_just_pressed("KeyShootFront")
+	keyDropMinePressed = Input.is_action_just_pressed("KeyDropMine")
 
 
 func HandleDash():
@@ -99,7 +102,15 @@ func HandleShoot():
 		ChangeState(States.ShootFront)
 		BackFromShoot()
 
+
+func HandleMine():
+	if keyDropMinePressed: 
+		ChangeState(States.DropMine)
+		BackFromShoot()
+
 func BackFromShoot():
 	await animator.animation_finished
-	if current_state.name == 'ShootFront' or current_state.name == 'ShootBack':
-		ChangeState(States.Run)	
+	if current_state.name == 'ShootFront' \
+	or current_state.name == 'ShootBack'  \
+	or current_state.name == 'DropMine' :
+		ChangeState(States.Run)

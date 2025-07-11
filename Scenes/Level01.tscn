@@ -110,14 +110,17 @@ theme_override_font_sizes/font_size = 320
 text = "0000"
 vertical_alignment = 2
 
-[node name="BackEnemySpawner" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(9, 183)
+[node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("5_3447m")
 
+[node name="BackEnemySpawner" type="Marker2D" parent="."]
+position = Vector2(-30, 179)
+
 [node name="BackEnemyPointer" type="Marker2D" parent="BackEnemySpawner"]
-position = Vector2(30, 0)
+position = Vector2(60, 0)
 
 [node name="FrontEnemySpawner" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(460, 175)
+position = Vector2(507, 182)
+
+[node name="FrontEnemyPointer" type="Marker2D" parent="FrontEnemySpawner"]
+position = Vector2(-60, 0)

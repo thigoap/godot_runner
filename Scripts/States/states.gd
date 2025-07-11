@@ -8,3 +8,4 @@ extends Node
 @onready var Dash = $Dash
 @onready var ShootBack = $ShootBack
 @onready var ShootFront = $ShootFront
+@onready var DropMine = $DropMine

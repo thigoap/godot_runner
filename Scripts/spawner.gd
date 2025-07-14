@@ -12,8 +12,8 @@ var front_enemy_on = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	back_enemy_spawner.position.x += GameManager.game_speed
-	front_enemy_spawner.position.x += GameManager.game_speed
+	#back_enemy_spawner.position.x += GameManager.game_speed
+	#front_enemy_spawner.position.x += GameManager.game_speed
 	if not back_enemy_on:
 		spawn_back_enemies()
 		back_enemy_on = true
